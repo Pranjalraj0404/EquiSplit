@@ -11,6 +11,7 @@ const customFormat = format.combine(
     })
 )
 
+// Explicitly create logger with ONLY console transport (Vercel serverless compatible)
 const logger = createLogger({
     level: process.env.LOG_LEVEL || 'info',
     format: customFormat,
@@ -27,7 +28,10 @@ const logger = createLogger({
     ],
     rejectionHandlers: [
         new transports.Console()
-    ]
+    ],
+    // Explicitly disable default behaviors that might create files
+    silent: process.env.DISABLE_LOGGING === 'true',
+    exitOnError: false
 })
 
 module.exports = logger

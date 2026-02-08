@@ -2,7 +2,6 @@ const model = require('../model/schema')
 const validator = require('../helper/validation')
 const logger = require('../helper/logger')
 const splitCalculator = require('../helper/split')
-const { error } = require('../helper/logger')
 
 /*
 Create Group Function This function basically create new groups
