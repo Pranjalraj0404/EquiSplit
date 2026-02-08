@@ -1,4 +1,4 @@
-{
+﻿{
 	"info": {
 		"_postman_id": "83b49bd1-f253-4f5c-9887-950c49cc2256",
 		"name": "SplitApp : 3001",
@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\" : \"John\",\n    \"lastName\" : \"Dao\",\n    \"emailId\" : \"test-mail@gmail.com\",\n    \"password\" : \"TestPassword@123\"\n}",
+							"raw": "{\n    \"firstName\" : \"John\",\n    \"lastName\" : \"Dao\",\n    \"emailId\" : \"test-mail@gmail.com\",\n    \"password\" : \"REDACTED_PASSWORD\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -44,7 +44,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"emailId\": \"test-mail@gmail.com\",\n    \"password\": \"TestPassword@123\"\n}",
+							"raw": "{\n    \"emailId\": \"test-mail@gmail.com\",\n    \"password\": \"REDACTED_PASSWORD\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -73,7 +73,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": " asd eyJhbGciOiJIUzI1NiJ9.dGVzdC1tYWlsQGdtYWlsLmNvbQ.eXfSG1iM6BBKK0XgSUdqqeccig-DjDtG1WoP2zEh70k",
+								"value": "REDACTED_TOKEN",
 								"type": "text"
 							}
 						],
@@ -108,7 +108,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": " asd eyJhbGciOiJIUzI1NiJ9.dGVzdC1tYWlsQGdtYWlsLmNvbQ.eXfSG1iM6BBKK0XgSUdqqeccig-DjDtG1WoP2zEh70k",
+								"value": "REDACTED_TOKEN",
 								"type": "text"
 							}
 						],
@@ -143,7 +143,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\" : \"Pranjal\",\n    \"lastName\" : \"Dao\",\n    \"emailId\" : \"test-mail@gmail.com\",\n    \"password\" : \"TestPassword@123\"\n}",
+							"raw": "{\n    \"firstName\" : \"Pranjal\",\n    \"lastName\" : \"Dao\",\n    \"emailId\" : \"test-mail@gmail.com\",\n    \"password\" : \"REDACTED_PASSWORD\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -172,7 +172,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"emailId\" : \"test-mail@gmail.com\",\n    \"oldPassword\" : \"TestPassword@123\",\n    \"newPassword\" : \"TestPassword@2022\"\n}",
+							"raw": "{\n    \"emailId\" : \"test-mail@gmail.com\",\n    \"oldPassword\" : \"REDACTED_PASSWORD\",\n    \"newPassword\" : \"REDACTED_PASSWORD\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -201,7 +201,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": " asd eyJhbGciOiJIUzI1NiJ9.dGVzdC1tYWlsQGdtYWlsLmNvbQ.eXfSG1iM6BBKK0XgSUdqqeccig-DjDtG1WoP2zEh70k",
+								"value": "REDACTED_TOKEN",
 								"type": "text"
 							}
 						],
@@ -334,7 +334,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Barer eyJhbGciOiJIUzI1NiJ9.czRzdW5ueWdlb3JnZUBnbWFpbC5jb20.l-7GNryU_LGY6kNYDE8B6Z9zY5iN4uzTL8zgzn94YnI",
+								"value": "REDACTED_TOKEN",
 								"type": "text"
 							}
 						],
@@ -374,7 +374,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Barer eyJhbGciOiJIUzI1NiJ9.czRzdW5ueWdlb3JnZUBnbWFpbC5jb20.l-7GNryU_LGY6kNYDE8B6Z9zY5iN4uzTL8zgzn94YnI",
+								"value": "REDACTED_TOKEN",
 								"type": "text"
 							}
 						],
@@ -467,7 +467,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": " asd eyJhbGciOiJIUzI1NiJ9.dGVzdC1tYWlsN0BnbWFpbC5jb20.lcC7PGa6CTwZW71NSTPVNepRD4uNboDLIZxZ26Yx_IU",
+								"value": "REDACTED_TOKEN",
 								"type": "text"
 							}
 						],
@@ -503,7 +503,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": " asd eyJhbGciOiJIUzI1NiJ9.dGVzdC1tYWlsN0BnbWFpbC5jb20.lcC7PGa6CTwZW71NSTPVNepRD4uNboDLIZxZ26Yx_IU",
+								"value": "REDACTED_TOKEN",
 								"type": "text"
 							}
 						],
@@ -539,7 +539,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": " asd eyJhbGciOiJIUzI1NiJ9.dGVzdC1tYWlsN0BnbWFpbC5jb20.lcC7PGa6CTwZW71NSTPVNepRD4uNboDLIZxZ26Yx_IU",
+								"value": "REDACTED_TOKEN",
 								"type": "text"
 							}
 						],
@@ -574,7 +574,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": " asd eyJhbGciOiJIUzI1NiJ9.dGVzdC1tYWlsN0BnbWFpbC5jb20.lcC7PGa6CTwZW71NSTPVNepRD4uNboDLIZxZ26Yx_IU",
+								"value": "REDACTED_TOKEN",
 								"type": "text"
 							}
 						],
@@ -609,7 +609,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": " asd eyJhbGciOiJIUzI1NiJ9.dGVzdC1tYWlsN0BnbWFpbC5jb20.lcC7PGa6CTwZW71NSTPVNepRD4uNboDLIZxZ26Yx_IU",
+								"value": "REDACTED_TOKEN",
 								"type": "text"
 							}
 						],
@@ -645,7 +645,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": " asd eyJhbGciOiJIUzI1NiJ9.dGVzdC1tYWlsN0BnbWFpbC5jb20.lcC7PGa6CTwZW71NSTPVNepRD4uNboDLIZxZ26Yx_IU",
+								"value": "REDACTED_TOKEN",
 								"type": "text"
 							}
 						],
@@ -736,4 +736,6 @@
 		}
 	]
 }
+
+
 

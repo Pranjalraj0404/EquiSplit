@@ -116,7 +116,6 @@ build
 Thumbs.db
 
 # Project junk
-Screenshots/
 *.swp
 *.swo
 *.tmp
