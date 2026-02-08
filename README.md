@@ -23,18 +23,20 @@ The system is built with clean backend architecture, modular routing, secure aut
 
 ## 📸 Application Preview
 
-### 🏠 Landing Page
-![Landing Page](./Landing_page.png)
 
 ### 🔐 Login Page
-![Login](./Login.png)
+![Login](./Screenshots/Login.png)
 
 ### 📝 Signup Page
-![Signup](./Signup.png)
+![Signup](./Screenshots/Signup.png)
 
+### 📊 Dashboard
+![Dashboard](./Screenshots/dashboard.png)
 
 ### 📈 Expense Analytics
-![Pie Chart](./Piechart.png)
+![Pie Chart](./Screenshots/Piechart.png)
+
+
 
 ---
 
