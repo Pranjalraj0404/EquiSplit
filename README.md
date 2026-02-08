@@ -81,11 +81,6 @@ Design Principles:
 
 ### Frontend
 - React.js
-- React Router
-- Material UI
-- Axios
-- Formik + Yup
-- Chart.js
 
 ### Backend
 - Node.js
