@@ -7,6 +7,7 @@ var cors = require('cors')
 var mongoose = require('mongoose')
 
 const path = require('path');
+const fs = require('fs');
 dotenv.config()
 
 var usersRouter = require('./routes/userRouter')
@@ -32,11 +33,46 @@ app.get('/health/db', (req, res) => {
 })
 
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
-    app.use(express.static('client/build'));
+    const buildPath = path.join(__dirname, 'client/build');
+    
+    // Serve static files from client/build
+    app.use(express.static(buildPath));
+    
+    // Handle all other routes by serving index.html (SPA fallback)
     app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname,'client','build','index.html'));
+        const indexPath = path.join(buildPath, 'index.html');
+        
+        // Check if build directory exists
+        if (!fs.existsSync(buildPath)) {
+            logger.error(`[Build Not Found] Build directory missing at ${buildPath}`);
+            return res.status(500).json({ 
+                status: 'fail', 
+                message: 'Application build not found. Please redeploy.',
+                path: buildPath
+            });
+        }
+        
+        if (!fs.existsSync(indexPath)) {
+            logger.error(`[Index Not Found] index.html missing at ${indexPath}`);
+            return res.status(500).json({ 
+                status: 'fail', 
+                message: 'Application files corrupted. Please redeploy.',
+                path: indexPath
+            });
+        }
+        
+        res.sendFile(indexPath, (err) => {
+            if (err) {
+                logger.error(`[Static File Error] ${err.message}`);
+                res.status(500).json({ 
+                    status: 'fail', 
+                    message: 'Unable to load application',
+                    error: err.message 
+                });
+            }
+        });
     });
-   }
+}
 
 //To detect and log invalid api hits 
 app.all('*', (req, res) => {
