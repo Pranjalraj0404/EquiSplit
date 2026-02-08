@@ -176,16 +176,3 @@ npm start
 
 ---
 
-## Future Improvements
-
-- WebSocket-based real-time updates
-- Custom split percentage support
-- Payment gateway integration
-- Docker containerization
-- CI/CD integration
-
----
-
-## License
-
-MIT License
