@@ -1,60 +1,82 @@
-# SplitApp
+# 🚀 SplitApp – Intelligent Group Expense Tracker
 
-A scalable full-stack MERN application for intelligent group expense tracking and automated debt settlement.
+A production-ready **MERN stack application** for seamless group expense tracking and automated debt settlement.
+
+SplitApp simplifies shared finances by enabling users to create groups, log expenses, compute balances automatically, and visualize spending patterns through interactive dashboards.
 
 ---
 
-## Overview
+## 🌍 Overview
 
-SplitApp is a production-oriented expense sharing platform that simplifies group financial management.  
-It enables users to create groups, track shared expenses, automatically compute balances, and visualize spending patterns through interactive dashboards.
+Managing shared expenses in trips, hostels, or projects can get messy.  
+SplitApp solves this by providing:
+
+- Automated equal expense splitting
+- Real-time balance tracking
+- Group-based financial management
+- Interactive analytics dashboard
+- Secure authentication & protected APIs
 
 The system is built with clean backend architecture, modular routing, secure authentication, and optimized MongoDB queries.
 
 ---
 
-## Application Preview
+## 📸 Application Preview
 
-### Dashboard
-![Dashboard](./Screenshots/dashboard-main-transparent.png)
+### 🏠 Landing Page
+![Landing Page](./Landing_page.png)
 
-### Group View
-![Group View](./Screenshots/Group%20View%20Page.jpg)
+### 🔐 Login Page
+![Login](./Login.png)
 
-### Combined Overview
-![Overview](./Screenshots/combined-screenshot.png)
+### 📝 Signup Page
+![Signup](./Signup.png)
+
+
+### 📈 Expense Analytics
+![Pie Chart](./Piechart.png)
 
 ---
 
-## Core Features
+## ✨ Key Features
 
-### Authentication & Security
-- JWT-based authentication
+### 🔐 Authentication & Security
+- JWT-based stateless authentication
 - Password hashing using bcrypt
-- Protected API routes via middleware
+- Protected routes via middleware
 - Environment-based configuration
-- Centralized input validation
+- Centralized validation using Joi
 
-### Group Management
+---
+
+### 👥 Group Management
 - Create, update, and delete groups
-- Add members dynamically
-- Group-specific dashboards
-- Automatic balance recalculation
-
-### Expense Tracking
-- Multi-currency support
-- Category-based expense tagging
-- Automated equal split logic
+- Add/remove members dynamically
+- Group-specific expense tracking
+- Automatic debt recalculation
 - Real-time balance updates
-- Activity tracking
 
-### Analytics Dashboard
+---
+
+### 💰 Expense Tracking
+- Equal split logic automation
+- Category-based expense tagging
+- Multi-user contribution tracking
+- Transaction history logging
+- Instant balance computation
+
+---
+
+### 📊 Analytics Dashboard
 - Category-wise expense distribution
 - Member contribution comparison
 - Monthly expense trends
-- Interactive visualizations using Chart.js
+- Chart.js interactive visualizations
+- MongoDB aggregation pipeline optimization
 
-### User Experience
+---
+
+### 🎨 User Experience
 - Fully responsive design
 - Material UI interface
 - Dark / Light theme support
@@ -62,25 +84,28 @@ The system is built with clean backend architecture, modular routing, secure aut
 
 ---
 
-## Architecture
-
-Client (React)  
-→ Express REST API (Node.js)  
-→ MongoDB Atlas  
-
-Design Principles:
+## 🏗️ Architecture
+```
+Client (React.js)  
+⬇  
+Express REST API (Node.js)  
+⬇  
+MongoDB Atlas  
+```
+### Design Principles
 - Separation of concerns
-- Modular route-controller structure
-- Middleware-driven validation and logging
+- Modular controller-route structure
+- Middleware-driven validation & logging
 - Stateless authentication
-- Optimized aggregation queries
+- Optimized database queries
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 ### Frontend
 - React.js
+- React Router
 
 ### Backend
 - Node.js
@@ -88,86 +113,101 @@ Design Principles:
 - MongoDB Atlas
 - Mongoose
 - JWT Authentication
-- Joi Validation
-- Custom logging middleware
+- Custom Logging Middleware
 
 ---
 
-## Project Structure
+## 📂 Project Structure
 
 ```
-
 SplitApp/
 │
-├── client/               # React frontend
-├── components/           # Business logic controllers
-├── routes/               # API routes
-├── model/                # Database schemas
-├── helper/               # Split logic, validation, logging
-├── logs/                 # Application logs
+├── client/                 # React frontend
+├── components/             # Controllers / Business logic
+├── routes/                 # API routes
+├── model/                  # Database schemas
+├── helper/                 # Split logic, validation, logging
+├── logs/                   # Application logs
 │
-├── app.js                # Express entry point
-├── check-users.js        # Utility script
-└── Screenshots/          # UI preview images
+├── app.js                  # Express entry point
+├── check-users.js          # Utility script
+
 ```
 
 ---
 
-## Installation & Setup
+## ⚙️ Installation & Setup
 
-### 1. Clone Repository
+### 1️⃣ Clone Repository
 
-```
-git clone <your-repository-url>
+```bash
+git clone https://github.com/your-username/SplitApp.git
 cd SplitApp
 ```
 
-### 2. Install Backend Dependencies
+---
 
-```
+### 2️⃣ Install Backend Dependencies
+
+```bash
 npm install
 ```
 
-### 3. Install Frontend Dependencies
+---
 
-```
+### 3️⃣ Install Frontend Dependencies
+
+```bash
 cd client
 npm install
 ```
 
-### 4. Configure Environment Variables
+---
+
+### 4️⃣ Configure Environment Variables
 
 Create a `.env` file in the root directory:
 
-```
+```env
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
 ```
 
-### 5. Run Application
+---
+
+### 5️⃣ Run Application
 
 Backend:
-```
+
+```bash
 npm run dev
 ```
 
 Frontend:
-```
+
+```bash
 cd client
 npm start
 ```
 
 ---
 
-## Engineering Highlights
+## 🧠 Engineering Highlights
 
 - Designed scalable MongoDB schema for Users, Groups, and Expenses
-- Implemented automated split and balance computation logic
-- Used aggregation pipelines to optimize dashboard queries
+- Implemented automated balance computation algorithm
+- Used aggregation pipelines to optimize analytics queries
 - Built centralized error-handling middleware
 - Structured backend using modular REST architecture
-- Integrated logging for debugging and observability
+- Integrated logging for observability and debugging
+- Production-ready configuration management
+
 
 ---
 
+## 📌 Author
+
+**Your Name**  
+GitHub: https://github.com/Pranjalraj0404 
+LinkedIn: https://www.linkedin.com/in/pranjalraj0404
