@@ -8,85 +8,90 @@ SplitApp simplifies shared finances by enabling users to create groups, log expe
 
 ## 🌍 Overview
 
-Managing shared expenses in trips, hostels, or projects can get messy.  
+Managing shared expenses in trips, hostels, or projects can get messy.
 SplitApp solves this by providing:
 
-- Automated equal expense splitting
-- Real-time balance tracking
-- Group-based financial management
-- Interactive analytics dashboard
-- Secure authentication & protected APIs
+* Automated equal expense splitting
+* Real-time balance tracking
+* Group-based financial management
+* Interactive analytics dashboard
+* Secure authentication & protected APIs
 
 The system is built with clean backend architecture, modular routing, secure authentication, and optimized MongoDB queries.
 
 ---
-Check live demo - https://equisplit-pranjal.vercel.app
-## 📸 Application Preview
 
-
-### 🔐 Login Page
-![Login](./Screenshots/Login.png)
-
-### 📝 Signup Page
-![Signup](./Screenshots/Signup.png)
-
-### 📊 Dashboard
-![Dashboard](./Screenshots/dashboard.png)
-
-### 📈 Expense Analytics
-![Pie Chart](./Screenshots/Piechart.png)
-
-
+Check live demo - [https://equisplit-pranjal.vercel.app](https://equisplit-pranjal.vercel.app)
 
 ---
+## 📸 Application Preview 
+
+### 🔐 Login Page 
+![Login](./Screenshots/Login.png) 
+
+### 📝 Signup Page 
+![Signup](./Screenshots/Signup.png) 
+
+### 📊 Dashboard 
+![Dashboard](./Screenshots/dashboard.png) 
+
+### 📈 Expense Analytics 
+![Pie Chart](./Screenshots/Piechart.png)
+
 
 ## ✨ Key Features
 
 ### 🔐 Authentication & Security
-- JWT-based stateless authentication
-- Password hashing using bcrypt
-- Protected routes via middleware
-- Environment-based configuration
-- Centralized validation using Joi
+
+* JWT-based stateless authentication
+* Password hashing using bcrypt
+* Protected routes via middleware
+* Environment-based configuration
+* Centralized validation using Joi
 
 ---
 
 ### 👥 Group Management
-- Create, update, and delete groups
-- Add/remove members dynamically
-- Group-specific expense tracking
-- Automatic debt recalculation
-- Real-time balance updates
+
+* Create, update, and delete groups
+* Add/remove members dynamically
+* Group-specific expense tracking
+* Automatic debt recalculation
+* Real-time balance updates
 
 ---
 
 ### 💰 Expense Tracking
-- Equal split logic automation
-- Category-based expense tagging
-- Multi-user contribution tracking
-- Transaction history logging
-- Instant balance computation
+
+* Equal split logic automation
+* Category-based expense tagging
+* Multi-user contribution tracking
+* Transaction history logging
+* Instant balance computation
 
 ---
 
 ### 📊 Analytics Dashboard
-- Category-wise expense distribution
-- Member contribution comparison
-- Monthly expense trends
-- Chart.js interactive visualizations
-- MongoDB aggregation pipeline optimization
+
+* Category-wise expense distribution
+* Member contribution comparison
+* Monthly expense trends
+* Chart.js interactive visualizations
+* MongoDB aggregation pipeline optimization
 
 ---
 
 ### 🎨 User Experience
-- Fully responsive design
-- Material UI interface
-- Dark / Light theme support
-- SPA routing with React Router
+
+* Fully responsive design
+* Material UI interface
+* Dark / Light theme support
+* SPA routing with React Router
 
 ---
 
 ## 🏗️ Architecture
+
 ```
 Client (React.js)  
 ⬇  
@@ -94,28 +99,32 @@ Express REST API (Node.js)
 ⬇  
 MongoDB Atlas  
 ```
+
 ### Design Principles
-- Separation of concerns
-- Modular controller-route structure
-- Middleware-driven validation & logging
-- Stateless authentication
-- Optimized database queries
+
+* Separation of concerns
+* Modular controller-route structure
+* Middleware-driven validation & logging
+* Stateless authentication
+* Optimized database queries
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-- React.js
-- React Router
+
+* React.js
+* React Router
 
 ### Backend
-- Node.js
-- Express.js
-- MongoDB Atlas
-- Mongoose
-- JWT Authentication
-- Custom Logging Middleware
+
+* Node.js
+* Express.js
+* MongoDB Atlas
+* Mongoose
+* JWT Authentication
+* Custom Logging Middleware
 
 ---
 
@@ -133,7 +142,6 @@ SplitApp/
 │
 ├── app.js                  # Express entry point
 ├── check-users.js          # Utility script
-
 ```
 
 ---
@@ -199,19 +207,18 @@ npm start
 
 ## 🧠 Engineering Highlights
 
-- Designed scalable MongoDB schema for Users, Groups, and Expenses
-- Implemented automated balance computation algorithm
-- Used aggregation pipelines to optimize analytics queries
-- Built centralized error-handling middleware
-- Structured backend using modular REST architecture
-- Integrated logging for observability and debugging
-- Production-ready configuration management
-
+* Designed scalable MongoDB schema for Users, Groups, and Expenses
+* Implemented automated balance computation algorithm
+* Used aggregation pipelines to optimize analytics queries
+* Built centralized error-handling middleware
+* Structured backend using modular REST architecture
+* Integrated logging for observability and debugging
+* Production-ready configuration management
 
 ---
 
 ## 📌 Author
 
-**Your Name**  
-GitHub: https://github.com/Pranjalraj0404 
-LinkedIn: https://www.linkedin.com/in/pranjalraj0404
+**Pranjal Raj**
+GitHub: [https://github.com/Pranjalraj0404](https://github.com/Pranjalraj0404)
+LinkedIn: [https://www.linkedin.com/in/pranjalraj0404](https://www.linkedin.com/in/pranjalraj0404)
