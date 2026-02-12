@@ -20,7 +20,7 @@ SplitApp solves this by providing:
 The system is built with clean backend architecture, modular routing, secure authentication, and optimized MongoDB queries.
 
 ---
-
+Check live demo - https://equisplit-pranjal.vercel.app
 ## 📸 Application Preview
 
 
