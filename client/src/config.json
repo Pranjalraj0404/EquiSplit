@@ -17,6 +17,7 @@
     "CREATE_GROUP_URL" : "/dashboard/crateGroup",
     "ABOUT_URL" : "/about",
     "USER_PROFILE_URL" : "/dashboard/userProfile",
+    "PAYMENT_URL" : "/dashboard/payment",
     "USER_DELETED_URL" : "/userProfile/confirmDelete",
     "USER_PASS_UPDATE_URL" : "/dashboard/userProfile/updatePassword",
 

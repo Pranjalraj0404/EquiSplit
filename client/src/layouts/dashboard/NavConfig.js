@@ -24,6 +24,11 @@ const navConfig = [
     icon: getIcon('fa6-solid:users-gear'),
   },
   {
+    title: 'Payments',
+    path: configData.PAYMENT_URL,
+    icon: getIcon('material-symbols:payments-rounded'),
+  },
+  {
     title: 'About',
     path: configData.ABOUT_URL,
     icon: getIcon('fluent:info-12-filled'),

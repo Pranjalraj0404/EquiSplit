@@ -2,6 +2,13 @@ const model = require('../model/schema')
 const validator = require('../helper/validation')
 const logger = require('../helper/logger')
 const splitCalculator = require('../helper/split')
+const Razorpay = require('razorpay')
+const crypto = require('crypto')
+
+const razorpayInstance = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET
+})
 
 /*
 Create Group Function This function basically create new groups
@@ -466,4 +473,118 @@ exports.removeFavourite = async(req, res) => {
         })
     }
 
+}
+
+
+/*
+Create Razorpay Order for a settlement
+Accepts: groupId, settleFrom, settleTo, settleAmount
+Returns: razorpay order object and key id for client checkout
+*/
+exports.createRazorpayOrder = async (req, res) => {
+    try {
+        validator.notNull(req.body.groupId)
+        validator.notNull(req.body.settleFrom)
+        validator.notNull(req.body.settleTo)
+        validator.notNull(req.body.settleAmount)
+
+        const group = await model.Group.findOne({ _id: req.body.groupId })
+        if (!group) {
+            var err = new Error("Invalid Group Id")
+            err.status = 400
+            throw err
+        }
+
+        const amount = Math.round(Number(req.body.settleAmount) * 100) // smallest currency unit
+        const currency = group.groupCurrency || 'INR'
+
+        const options = {
+            amount: amount,
+            currency: currency,
+            receipt: `settlement_${req.body.groupId}_${Date.now()}`,
+            payment_capture: 1
+        }
+
+        const order = await razorpayInstance.orders.create(options)
+
+        res.status(200).json({
+            status: 'Success',
+            order: order,
+            key: process.env.RAZORPAY_KEY_ID
+        })
+    } catch (err) {
+        logger.error(`URL : ${req.originalUrl} | staus : ${err.status} | message: ${err.message} ${err.stack}`)
+        res.status(err.status || 500).json({
+            message: err.message
+        })
+    }
+}
+
+
+/*
+Verify Razorpay payment signature and record settlement
+Accepts: razorpay_order_id, razorpay_payment_id, razorpay_signature,
+         groupId, settleFrom, settleTo, settleAmount, settleDate (optional)
+*/
+exports.verifyRazorpayPayment = async (req, res) => {
+    try {
+        validator.notNull(req.body.razorpay_order_id)
+        validator.notNull(req.body.razorpay_payment_id)
+        validator.notNull(req.body.razorpay_signature)
+        validator.notNull(req.body.groupId)
+        validator.notNull(req.body.settleFrom)
+        validator.notNull(req.body.settleTo)
+        validator.notNull(req.body.settleAmount)
+
+        const generated_signature = crypto.createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
+            .update(req.body.razorpay_order_id + '|' + req.body.razorpay_payment_id)
+            .digest('hex')
+
+        if (generated_signature !== req.body.razorpay_signature) {
+            var err = new Error('Invalid payment signature')
+            err.status = 400
+            throw err
+        }
+
+        // signature valid - proceed to record settlement
+        const group = await model.Group.findOne({ _id: req.body.groupId })
+        if (!group) {
+            var err = new Error("Invalid Group Id")
+            err.status = 400
+            throw err
+        }
+
+        const settleAmount = Number(req.body.settleAmount)
+
+        group.split[0][req.body.settleFrom] += settleAmount
+        group.split[0][req.body.settleTo] -= settleAmount
+
+        const reqBody = new model.Settlement({
+            groupId: req.body.groupId,
+            settleTo: req.body.settleTo,
+            settleFrom: req.body.settleFrom,
+            settleDate: req.body.settleDate || new Date().toISOString(),
+            settleAmount: settleAmount,
+            paymentId: req.body.razorpay_payment_id,
+            orderId: req.body.razorpay_order_id,
+            paymentSignature: req.body.razorpay_signature,
+            paymentGateway: 'razorpay'
+        })
+
+        var id = await model.Settlement.create(reqBody)
+        var update_response = await model.Group.updateOne({ _id: group._id }, { $set: { split: group.split } })
+
+        res.status(200).json({
+            message: "Settlement successful and payment verified!",
+            status: "Success",
+            update: update_response,
+            response: id
+        })
+
+    } catch (err) {
+        logger.error(`URL : ${req.originalUrl} | staus : ${err.status} | message: ${err.message} ${err.stack}`)
+        res.status(err.status || 500).json({
+            message: err.message
+        })
+    }
 }

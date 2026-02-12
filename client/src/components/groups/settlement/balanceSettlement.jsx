@@ -9,6 +9,7 @@ import Loading from "../../loading";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { settlementService } from "../../../services/groupServices";
+import { createRazorpayOrderService, verifyRazorpayPaymentService } from "../../../services/paymentServices";
 import AlertBanner from "../../AlertBanner";
 import { Box } from "@mui/system";
 import Iconify from "../../Iconify";
@@ -23,6 +24,31 @@ const BalanceSettlement = ({ currencyType, settleTo, settleFrom, amount, handleC
   const [alertMessage, setAlertMessage] = useState()
   const [settleSuccess, setSettleSuccess] = useState(false)
   const params = useParams();
+  const [paymentLoading, setPaymentLoading] = useState(false);
+
+  const loadRazorpayScript = () => {
+    return new Promise((resolve) => {
+      if (window.Razorpay) {
+        resolve(true)
+        return
+      }
+
+      const existingScript = document.getElementById('razorpay-checkout-script')
+      if (existingScript) {
+        existingScript.onload = () => resolve(true)
+        existingScript.onerror = () => resolve(false)
+        return
+      }
+
+      const script = document.createElement('script')
+      script.id = 'razorpay-checkout-script'
+      script.src = 'https://checkout.razorpay.com/v1/checkout.js'
+      script.async = true
+      script.onload = () => resolve(true)
+      script.onerror = () => resolve(false)
+      document.body.appendChild(script)
+    })
+  }
 
   //Formink schema 
   const settlementSchema = Yup.object().shape({
@@ -176,6 +202,101 @@ const BalanceSettlement = ({ currencyType, settleTo, settleFrom, amount, handleC
             <Grid item xs={6} md={3}>
               <LoadingButton fullWidth size="large" type="submit" variant="contained" >
                 Settle
+              </LoadingButton>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <LoadingButton
+                fullWidth
+                size="large"
+                variant="contained"
+                color="success"
+                loading={paymentLoading}
+                onClick={async () => {
+                  setAlert(false)
+                  setAlertMessage(null)
+
+                  if (currencyType !== 'INR') {
+                    setAlert(true)
+                    setAlertMessage('Razorpay only supports INR in this flow')
+                    return
+                  }
+
+                  const isLoaded = await loadRazorpayScript()
+                  if (!isLoaded) {
+                    setAlert(true)
+                    setAlertMessage('Unable to load Razorpay checkout')
+                    return
+                  }
+
+                  setPaymentLoading(true)
+                  const settleAmount = Number(values.settleAmount)
+
+                  const orderResponse = await createRazorpayOrderService(
+                    {
+                      amount: settleAmount,
+                      currency: 'INR',
+                      receipt: `settle_${params.groupId}_${Date.now()}`,
+                      notes: {
+                        settleTo: values.settleTo,
+                        settleFrom: values.settleFrom
+                      }
+                    },
+                    setAlert,
+                    setAlertMessage
+                  )
+
+                  if (!orderResponse) {
+                    setPaymentLoading(false)
+                    return
+                  }
+
+                  const options = {
+                    key: orderResponse.data.keyId,
+                    amount: orderResponse.data.amount,
+                    currency: orderResponse.data.currency,
+                    name: 'EquiSplit',
+                    description: 'Group settlement',
+                    order_id: orderResponse.data.orderId,
+                    handler: async function (response) {
+                      const payload = {
+                        ...response,
+                        groupId: values.groupId,
+                        settleFrom: values.settleFrom,
+                        settleTo: values.settleTo,
+                        settleAmount: values.settleAmount,
+                        settleDate: values.settleDate
+                      }
+
+                      const verifyResponse = await verifyRazorpayPaymentService(payload, setAlert, setAlertMessage)
+                      if (verifyResponse?.data?.status === 'Success') {
+                        setSettleSuccess(true)
+                        setReload(true)
+                      } else {
+                        // Fallback: if verification succeeded but settlement not recorded, call settlement endpoint
+                        if (verifyResponse) {
+                          const settleResponse = await settlementService(values, setAlert, setAlertMessage)
+                          if (settleResponse?.data?.status === "Success") {
+                            setSettleSuccess(true)
+                            setReload(true)
+                          }
+                        }
+                      }
+                    },
+                    modal: {
+                      ondismiss: function () {
+                        setAlert(true)
+                        setAlertMessage('Payment cancelled')
+                      }
+                    },
+                    theme: { color: '#0F9D58' }
+                  }
+
+                  const razorpayInstance = new window.Razorpay(options)
+                  razorpayInstance.open()
+                  setPaymentLoading(false)
+                }}
+              >
+                Pay With Razorpay
               </LoadingButton>
             </Grid>
 

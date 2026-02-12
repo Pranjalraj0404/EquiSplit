@@ -32,6 +32,12 @@ router.post('/v1/settlement', controller.groupBalanceSheet)
 //Make settlement router 
 router.post('/v1/makeSettlement', controller.makeSettlement)
 
+// Create Razorpay order for settlement
+router.post('/v1/createOrder', controller.createRazorpayOrder)
+
+// Verify Razorpay payment and record settlement
+router.post('/v1/verifyPayment', controller.verifyRazorpayPayment)
+
 //Delte group router
 router.delete('/v1/delete', controller.deleteGroup)
 

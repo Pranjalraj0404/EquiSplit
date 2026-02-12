@@ -13,6 +13,7 @@ dotenv.config()
 var usersRouter = require('./routes/userRouter')
 var gorupRouter = require('./routes/groupRouter')
 var expenseRouter = require('./routes/expenseRouter')
+var paymentRouter = require('./routes/paymentRouter')
 
 var app = express()
 app.use(cors())
@@ -22,6 +23,7 @@ app.use(requestLogger)
 app.use('/api/users', usersRouter)
 app.use('/api/group', apiAuth.validateToken,gorupRouter)
 app.use('/api/expense', apiAuth.validateToken,expenseRouter)
+app.use('/api/payment', apiAuth.validateToken, paymentRouter)
 
 app.get('/health', (req, res) => {
     res.json({ status: 'ok' })

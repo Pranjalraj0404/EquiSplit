@@ -140,6 +140,21 @@ const Settlement = new mongoose.Schema({
         type:Number, 
         required: true
     }
+    ,
+    // Payment details (optional) - populated when settlement is done via payment gateway
+    paymentId: {
+        type: String
+    },
+    orderId: {
+        type: String
+    },
+    paymentSignature: {
+        type: String
+    },
+    paymentGateway: {
+        type: String,
+        default: 'razorpay'
+    }
 })
 
 module.exports.Expense = mongoose.model('expense', Expense)

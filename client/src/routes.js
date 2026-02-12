@@ -22,6 +22,7 @@ import { ViewExpense } from './components/expense/viewExpense';
 import EditExpense from './components/expense/editExpense';
 import { EditGroup } from './components/groups/editGroup';
 import About from './components/about';
+import PaymentPage from './components/payment';
 
 
 import LandingPage from './components/LandingPage';
@@ -51,7 +52,9 @@ export default function Router() {
         // {path:configData.ABOUT_URL,
         //   element: <About/>},
         {path:configData.USER_PROFILE_URL,
-          element: <Profile/>}
+          element: <Profile/>},
+        {path:configData.PAYMENT_URL,
+          element: <PaymentPage/>}
       ]
     },
     {

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-// 🔥 Production Backend URL (Render)
+// Production backend URL (Render)
 const API = axios.create({
   baseURL: 'https://equisplit-meer.onrender.com'
 })
@@ -99,3 +99,11 @@ export const getRecentUserExp = (formData) =>
 
 export const getExpDetails = (formData) =>
   API.post('/api/expense/v1/view', formData)
+
+// ===================== PAYMENT =====================
+
+export const createRazorpayOrder = (formData) =>
+  API.post('/api/payment/v1/create-order', formData)
+
+export const verifyRazorpayPayment = (formData) =>
+  API.post('/api/payment/v1/verify', formData)
